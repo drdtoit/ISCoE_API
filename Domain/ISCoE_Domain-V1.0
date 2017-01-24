@@ -1,0 +1,2314 @@
+### Domains, a place to put your reuseable components
+
+### Examples...
+
+definitions:
+  address_type:
+    type: string
+    enum:
+      - residential # comment
+      - postal
+    description: >-
+      Client Preffered address type.
+  telephone_type:
+    type: string
+    enum:
+      - Telephone
+      - Cellphone
+    description: >-
+      Client Preferred telephone type including area code
+  tax_status_type:
+    type: string
+    enum:
+      - Individual
+      - Corporate
+      - Un-Taxed
+      - Retirement
+    description: >-
+      Tax status indicator based on party type.
+  party_type:
+    type: string
+    enum:
+      - natural
+      - juristic
+    description: >-
+      Type of party. Selected type including sub-type has an implication on the logical flow
+  juristic_type:
+   type: string
+   enum:
+      - association
+      - closed_corporation
+      - company
+      - government_entity
+      - non-taxable_institution
+      - partnership
+      - private_company
+      - public_company
+      - retirement_fund
+      - trust
+      - unincorporated_body_of_persons
+   description: >-
+    Relevent sub-types based on 'Juristic' party type.
+  salutation:
+    type: string
+    enum:
+      - mr
+      - mrs
+    description: >-
+      Title of Natural Person.
+  gender:
+    type: string
+    enum:
+      - male
+      - female
+    description: >-
+      Gender of Natural Person.
+  marital_status:
+    type: string
+    enum:
+      - married
+      - not_married
+    description: >-
+      Marital Status of Natural Person.
+  language:
+    type: string
+    enum:
+      - af
+      - en
+    description: >-
+      Client preferred language made on a client level. English or Afrikaans.
+  preferred_correspondence_type:
+    type: string
+    enum:
+      - email
+      - telephone
+      - post
+    description: >-
+      Client preferred method of correspondance. Email, Telephone (Cellphone or telephone) and post.
+  correspondence_mechanism_type:
+    type: string
+    enum:
+      - bulk_postal_mail
+      - email
+      - fax
+      - market
+      - phone
+      - postal_mail
+    description: >-
+      Client preferred method of correspondance.
+  identification_type:
+    type: string
+    enum:
+      - id_document
+      - passport
+    description: >-
+      Client identification type for Natural Person.
+  identity_type:
+    type: string
+    enum:
+      - id_number
+      - regestration number
+    description: >-
+      Identifies the type of identity used to identify the party 
+  account_type:
+    type: string
+    enum:
+      - check_account 
+      - savings_account
+      - current_account
+    description: >-
+      Client preferred account type used within banking details.
+  account_ownership_type:
+    type: string
+    enum:
+      - owner
+      - joint
+      - third_party
+    description: >-
+      Account ownership type 
+  account_status:
+    type: string
+    enum:
+      - unverified
+      - verified
+      - inactive
+  cession_type:
+    type: string
+    enum:
+      - collateral
+      - outright
+  role_type:
+    type: string
+    enum:
+      - owner
+      - beneficiary
+      - cessionary
+      - life_assured
+      - payee
+      - contribution_payer
+      - intermediary
+      - contact_person
+  tax_declaration_type:
+    type: string
+    enum:
+      - iwt
+      - dwt
+  beneficiary_role:
+    description: >-
+      Ownership - Party that is nominated to receive ownership of a contract. Proceeds - Party nominated to receive a portion of the proceeds.
+    type: string
+    enum:
+      - beneficiary_of_ownership
+      - Proceeds
+  agreement_acceptance_method_type:
+    description: "Agreement acceptance methods"
+    type: "string"
+    enum:
+    - signed_application
+    - eta
+  agreement_contribution_status_type:
+    description: "Contribution statuses"
+    type: "string"
+    enum:
+    - non_contributing
+    - contributing
+  business_sector_type:
+    description: "Business sectors"
+    type: "string"
+    enum:
+    - investment
+    - savings
+  segment_type:
+    description: "Segment types"
+    type: "string"
+    enum:
+    - retail_upper
+    - retail_middle
+    - retail_lower
+    - corporate
+  channel_type:
+    description: "Channel types"
+    type: "string"
+    enum:
+    - momentum_consult
+    - momentum_financial_planner
+    - independent_financial_advisors
+    - direct
+    - branch
+  agreement_type:
+    description: "Agreement types"
+    type: "string"
+    enum:
+    - excess_tax_free
+    - savings_portfolio
+    - savings_goal
+    - investment
+  agreement_status_type:
+    description: "Contract Status types"
+    type: "string"
+    enum:
+    - active
+    - cancelled
+    - change_of_ownership
+    - commuted
+    - contract_depleted
+    - cool_off_in_progress
+    - death
+    - disability_retirement
+    - early_retirement
+    - endowment_death_claim
+    - full_repurchase
+    - inactive_cooling_off
+    - inactive_surrender
+    - inactive_surrender pending
+    - not_taken_up_no_refund
+    - not_taken_up_refund
+    - open_ended
+    - resignation
+    - retirement
+    - terminated
+    - transferred
+    - transferred_to_mil
+    - transferred_via_Section_14
+    - transferred_via_Section_37_2
+  agreement_hierarchy:
+    description: "This is an agreement structure type"
+    type: "string"
+    enum:
+    - parent
+    - child
+    - standalone
+  months:
+    description: "Months"
+    type: "string"
+    enum:
+    - january
+    - february
+    - march
+    - april
+    - may
+    - june
+    - july
+    - august
+    - september
+    - october
+    - november
+    - december
+  agreement_intermediary_fee_type:
+    type: "string"
+    enum:
+    - initial_advice_fee
+    - ongoing_trail_fee
+    - advisory_fee
+  agreement_fee_type:
+    type: "string"
+    enum:
+    - accrued_amount
+    - outstanding_amount
+    - total_accrued_fees
+  agreement_tax_fee_type:
+    type: "string"
+    enum:
+    - provisional_tax
+    - annual_PAYE
+  agreement_limit_type:
+    type: "string"
+    enum:
+    - full_surrender
+    - full_withdrawal
+    - max_partial_surrender
+    - interest_free_loan
+    - investment_value
+    - tax_free
+    - current_year_tax_free
+    - fee_top_up_minimum
+  available_agreement_value_type:
+    type: "string"
+    enum:
+    - full_surrender
+    - full_withdrawal
+    - partial_surrender
+    - interest_free_loan
+    - tax_free
+    - current_year_tax_free
+    - transitional
+    - fee_top_up
+  actual_agreement_value_type:
+    type: "string"
+    enum:
+    - transitional
+    - investment
+    - regular_income
+    - regular_collection
+  sell_dealing_frequency_type:
+    type: "string"
+    enum:
+    - daily
+    - monthly
+  investment_account_type:
+    type: "string"
+    enum:
+    - transitional_account
+    - fee_topup_account
+    - investment
+  schedule_frequency:
+    type: "string"
+    enum:
+    - monthly
+    - quarterly
+    - yearly
+  endowment_tax_portfolio:
+    type: "string"
+    enum:
+    - ctp # corporate policyholder fund 
+    - itp # individual policyholder fund
+    - utp # non taxable
+    - rtp # retirement fund
+  investor_type:
+    type: "string"
+    enum:
+    - natural 
+    - trust
+    - public_company
+    - private_company
+  product_license:
+    type: "string"
+    enum:
+    - endowment 
+    - lisp 
+    - cis
+  jurisdiction:
+    type: "string"
+    enum:
+    - za 
+    - gg 
+    - gg_branch 
+  percentage:
+    type: object
+    properties:
+      value:
+        type: number
+        format: float
+  error:
+    type: object
+    properties:
+      code:
+        type: string
+        description: "Error code"
+      message:
+        type: string
+        description: "Error description"
+      details:
+        type: string
+        description: "Additional details about the error"
+  link:
+    description: "href to retrieve resource"
+    type: object
+    properties:
+      rel:
+        type: string
+        description: "Link relation that describes how this link relates to the previous service call. Examples include self (get details of the current call), role_player (get details of a role player), or a related call such as withdraw or invest"
+      href:
+        type: string
+        description: "URL of the related HATEOAS link you can use for subsequent calls"
+      method:
+        type: string
+        description: "The HTTP method required for the related call"
+  type_definition:
+    description: "Basic key value pair"
+    type: "object"
+    properties:
+      code:
+        type: "string"
+      description:
+        type: "string"
+  money:
+    type: "object"
+    properties:
+      value:
+        type: "number"
+        format: "float"
+      currency:
+        type: "string"
+  foreign_exchange:
+    type: "object"
+    properties:
+      from:
+        type: "string"
+        description: "From currency"
+      to:
+        type: "string"
+        description: "From currency"
+      exchange_rate:
+        type: "number"
+        format: "float"
+        description: "ratio to convert from currency to,to currency"
+  role:
+    type: object
+    properties:
+      uid: 
+        type: string
+      party:
+        $ref: '#/definitions/party_ref'
+      agreement:
+        type: string
+  generic_role:
+    allOf: 
+    - $ref: '#/definitions/role'
+    - type: object
+      properties:
+        role_type:
+          $ref: '#/definitions/role_type'
+  role_detail:
+    description: >- 
+      Still to group
+  owner:
+    allOf: 
+    - $ref: '#/definitions/role'
+    - type: object
+      properties:
+        retirement_age:
+          type: number
+  contribution_payer:
+    allOf: 
+    - $ref: '#/definitions/role'
+    - type: object
+      properties:
+        party_id_number:
+          type: string
+        name:
+          type: string
+        party_type:
+          type: string
+        party_id_type:
+          type: string
+        date_of_birth:
+          type: string
+          format: date
+        bank_account:
+          $ref: '#/definitions/bank_account_ref'
+        recurring_instruction:
+           $ref: '#/definitions/link'
+    description: Contribution Payer
+  payee:
+    allOf: 
+    - $ref: '#/definitions/role'
+    - type: object
+      properties:
+        bank_account:
+          $ref: '#/definitions/bank_account_ref'
+        recurring_instruction:
+           $ref: '#/definitions/link'
+  beneficiary:
+    allOf: 
+    - $ref: '#/definitions/role'
+    - type: object
+      properties:
+        party_id_number:
+          type: string
+        name:
+          type: string
+        party_type:
+          type: string
+        party_id_type:
+          type: string
+        date_of_birth:
+          type: string
+          format: date
+        relationship:
+          type: string
+        split:
+          $ref: '#/definitions/percentage'
+        product_rule_beneficiary_notes:
+         type: string
+        beneficiary_role:
+          $ref: '#/definitions/beneficiary_role'
+  cessionary:
+    allOf: 
+    - $ref: '#/definitions/role'
+    - type: object
+      properties:
+        party_id_number:
+          type: string
+        name:
+          type: string
+        party_type:
+          type: string
+        party_id_type:
+          type: string
+        date_of_birth:
+          type: string
+          format: date
+        product_rule_cessionary_notes:
+         type: string
+        cession_type:
+          $ref: '#/definitions/cession_type'
+  life_assured:
+    allOf: 
+    - $ref: '#/definitions/role'
+  party_ref:
+    properties:
+      party_id_number:
+        type: string
+      name:
+        type: string
+      party_type:
+        type: string
+      party_id_type:
+        type: string
+      date_of_birth:
+        type: string
+        format: date
+      product_rule_life_assured_notes:
+        type: string
+      link:
+        $ref: '#/definitions/link'
+      detail:
+        $ref: '#/definitions/party'
+  party:
+    properties:
+      uid:
+        type: string
+        description: "Party_ID. Unique Identifier for a Party used as an item reference or incorporation."
+      bank_accounts:
+        $ref: '#/definitions/bank_accounts_ref'
+      preferred_correspondence:
+        $ref: '#/definitions/preferred_correspondence_type'
+      contact_details:
+        $ref: '#/definitions/contact_details_ref'
+      tax_details:
+        $ref: '#/definitions/tax_details'
+  generic_party:
+    allOf: 
+    - $ref: '#/definitions/party'
+    - type: object
+      properties:
+        party_type:
+          $ref: '#/definitions/party_type'
+        name:
+          type: string
+          description: "Name of the party. This field will be used for sorting and filtering. It contains either the natural person's surname and name <surname,names> or the juristic’s name." 
+        identity:
+          type: string
+          description: "Identity of Party. This field will be used for sorting and filtering. It contains either the natural person's id number or the juristic’s registration number."
+        identity_type:
+          $ref: '#/definitions/identity_type'
+  natural:
+    allOf: 
+    - $ref: '#/definitions/party'
+    - type: object
+      properties:
+        title:
+          $ref: '#/definitions/salutation'
+        surname:
+          type: string
+        initials:
+          type: string
+        full_names:
+          type: string
+        preferred_name:
+          type: string
+        gender:
+          $ref: '#/definitions/gender'
+        marital_status:
+          $ref: '#/definitions/marital_status'
+        identities:
+          $ref: '#/definitions/party_identities_ref'
+        date_of_birth:
+          type: string
+          format: date
+        country_of_birth:
+          type: string
+        date_of_death:
+          type: string
+          format: date
+        preferred_language:
+          $ref: '#/definitions/language'
+        compliance_indicators:
+          $ref: '#/definitions/compliance_indicators'
+  juristic:
+    allOf: 
+    - $ref: '#/definitions/party'
+    - type: object
+      properties:
+        name:
+          type: string
+          description: "Name of juristic as per trust, member of incorporation, trust deed etc."
+        juristic_type:
+          $ref: '#/definitions/juristic_type'
+        registration_number:
+          type: string
+        registration_date:
+          type: string
+          format: date
+        institution_code:
+          type: string
+        vat_number:
+          type: string
+        correspondence_types:
+          $ref: '#/definitions/correspondence_mechanisms_ref'
+  correspondence_mechanisms_ref:
+    type: object
+    properties:
+      link:
+        $ref: '#/definitions/link'
+      detail:
+        $ref: '#/definitions/correspondence_mechanisms'
+    description: Correspondance Mechanisms Ref 
+  correspondence_mechanisms:
+    type: array
+    items:
+      $ref: '#/definitions/correspondence_mechanism'
+    description: Correspondance Mechanisms
+  correspondence_mechanism:
+    type: object
+    properties:
+      type:
+        $ref: '#/definitions/correspondence_mechanism_type'
+      status:
+        type: boolean
+    description: Correspondance Mechanism
+  party_identities_ref:
+    properties:
+      link:
+        $ref: '#/definitions/link'
+      detail:
+        $ref: '#/definitions/party_identity_refs'
+  party_identity_refs:
+    type: object
+    properties:
+      links:
+        type: array
+        items:
+          $ref: '#/definitions/link'
+      details:
+        type: array
+        items:
+          $ref: '#/definitions/party_identity'
+  party_identity:
+    type: object
+    properties:
+      uid:
+        type: string
+      id_number:
+        type: string
+      country_of_issue:
+        type: string
+      identification_type:
+        $ref: '#/definitions/identification_type'
+      expiry_date:
+        type: string
+        format: date
+      default_identity:
+        type: boolean
+        description: "Identity the identity that should be used for this party."
+    description: Party Identity information
+  compliance_indicators:
+    type: object
+    properties:
+      pep:
+        $ref: '#/definitions/PEP_indicator_ref'
+      kyc:
+        $ref: '#/definitions/KYC_indicator_ref'
+      fatca:
+        $ref: '#/definitions/FATCA_indicator_ref'
+    description: Compliance Indicators
+  PEP_indicator_ref:
+    type: object
+    properties:
+      link:
+        $ref: '#/definitions/link'
+      detail:
+        $ref: '#/definitions/PEP_indicators'
+  PEP_indicators:
+    type: object
+    properties:
+      status:
+        type: boolean
+    description: PEP Indicators
+  KYC_indicator_ref:
+    type: object
+    properties:
+      link:
+        $ref: '#/definitions/link'
+      detail:
+        $ref: '#/definitions/KYC_indicators'
+  KYC_indicators:
+    type: object
+    properties:
+      status:
+        type: boolean
+    description: FICA Indicators
+  FATCA_indicator_ref:
+    type: object
+    properties:
+      link:
+        $ref: '#/definitions/link'
+      detail:
+        $ref: '#/definitions/FATCA_indicators'
+  FATCA_indicators:
+    type: object
+    properties:
+      reportable:
+        type: boolean
+    description: FATCA Indicators
+  party_detail:
+    type: object
+    properties:
+      natural:
+        $ref: '#/definitions/natural'
+      juristic:
+        $ref: '#/definitions/juristic'
+      link:
+        $ref: '#/definitions/link'
+  contact_details_ref:
+    type: object
+    properties:
+      emails:
+        $ref: '#/definitions/emails_ref'
+      addresses:
+        $ref: '#/definitions/addresses_ref'
+      telephones:
+        $ref: '#/definitions/telephones_ref'
+    description: List of Contact Details
+  emails_ref:
+    properties:
+      link:
+        $ref: '#/definitions/link'
+      detail:
+        $ref: '#/definitions/email_refs'
+  email_refs:
+    type: object
+    properties:
+      links:
+        type: array
+        items:
+          $ref: '#/definitions/link'
+      details:
+        type: array
+        items:
+          $ref: '#/definitions/email'
+  email:
+    type: object
+    properties:
+      uid:
+        type: string
+      eta: 
+        description: true if email is used for ETA
+        type: boolean
+      email_address:
+        type: string
+      preferred_address:
+        type: boolean
+      contact_person:
+        $ref: '#/definitions/contact_person_ref'
+    description: Email Address
+  addresses_ref:
+    properties:
+      link:
+        $ref: '#/definitions/link'
+      detail:
+        $ref: '#/definitions/address_refs'
+  address_refs:
+    type: object
+    properties:
+      links:
+        type: array
+        items:
+          $ref: '#/definitions/link'
+      details:
+        type: array
+        items:
+          $ref: '#/definitions/address'
+  address:
+    type: object
+    properties:
+      uid:
+        type: string
+      line1:
+        type: string
+      line2:
+        type: string
+      line3:
+        type: string
+      line4:
+        type: string
+      line5:
+        type: string
+      line6:
+        type: string
+      city:
+        type: string
+      postal_code:
+        type: string
+      country:
+        type: string
+      type:
+        $ref: '#/definitions/address_type'
+      preferred_address:
+        type: boolean
+      contact_person:
+        $ref: '#/definitions/contact_person_ref'
+    description: Address
+  telephones_ref:
+    properties:
+      link:
+        $ref: '#/definitions/link'
+      detail:
+        $ref: '#/definitions/telephone_refs'
+  telephone_refs:
+    type: object
+    properties:
+      links:
+        type: array
+        items:
+          $ref: '#/definitions/link'
+      details:
+        type: array
+        items:
+          $ref: '#/definitions/telephone'
+  telephone:
+    type: object
+    properties:
+      uid:
+        type: string
+      eta: 
+        description: true if email is used for ETA
+        type: boolean
+      number:
+        type: string
+      area_code:
+        type: string
+      country_code:
+        type: string
+      type:
+        $ref: '#/definitions/telephone_type'
+      preferred_number:
+        type: boolean
+      contact_person:
+        $ref: '#/definitions/contact_person_ref'
+    description: Telephone Number
+  bank_accounts_ref:
+    type: object
+    properties:
+      link:
+        $ref: '#/definitions/link'
+      detail:
+        $ref: '#/definitions/bank_account_refs'    
+  bank_account_refs:
+    type: object
+    properties:
+      links:
+        type: array
+        items:
+          $ref: '#/definitions/link'
+      details:
+        type: array
+        items:
+          $ref: '#/definitions/bank_account'
+  bank_account_ref:
+    type: object
+    properties:
+      links:
+        $ref: '#/definitions/link'
+      details:
+        $ref: '#/definitions/bank_account'
+  bank_account:
+    type: object
+    properties:
+      uid:
+        type: string
+      bank_name:
+        type: string
+      branch_name:
+        type: string
+      branch_code:
+        type: string
+      account_holder_name:
+        type: string
+      account_type:
+        $ref: '#/definitions/account_type'
+      account_number:
+        type: string
+      account_country:
+        description: Country account is holde in 
+        type: string
+      account_ownership:
+        $ref: '#/definitions/account_ownership_type'
+      account_status:
+        $ref: '#/definitions/account_status'
+      default_account:
+        description: true indicates that this is the default account
+        type: boolean
+      activation_date:
+        description: Date account became active
+        type: string
+        format: date
+      expiry_date:
+        description: Date account expired - became inactive
+        type: string
+        format: date
+    description: Bank Account
+  contact_person_ref:
+    type: object
+    properties:
+      link:
+        $ref: '#/definitions/link'
+      detail:
+        $ref: '#/definitions/contact_person'
+    description: Contact Person
+  contact_person:
+    type: object
+    properties:
+      uid:
+        type: string
+      preferred_name:
+        type: string
+      full_names:
+        type: string
+      initials:
+        type: string
+      surname:
+        type: string
+      title:
+        type: string
+    description: Contact Person
+  tax_details:
+    type: object
+    properties:
+      tax_residencies:
+        $ref: '#/definitions/tax_residencies_ref'
+      tax_declarations:
+        $ref: '#/definitions/tax_declarations_ref'
+    description: Tax Details
+  tax_residencies_ref:
+    type: object
+    properties:
+      link:
+        $ref: '#/definitions/link'
+      detail:
+        $ref: '#/definitions/tax_residency_refs'
+    description: Tax Residencies Detail
+  tax_residency_refs:
+    type: object
+    properties:
+      links:
+        type: array
+        items:
+          $ref: '#/definitions/link'
+      details:
+        type: array
+        items:
+          $ref: '#/definitions/tax_residency'
+    description: Tax Residencies Detail
+  tax_residency:
+    type: object
+    properties:
+      uid:
+        type: string
+      primary_tax_country:
+        type: boolean
+      citizen:
+        type: boolean
+      country:
+        type: string
+      tax_identification_number:
+        type: string
+      tax_payer:
+        type: boolean
+      tax_office:
+        type: string
+      tax_status:
+        $ref: '#/definitions/tax_status_type'
+  tax_declarations_ref:
+    type: object
+    properties:
+      link:
+        $ref: '#/definitions/link'
+      detail:
+        $ref: '#/definitions/tax_declaration_refs'
+    description: Tax Declarations
+  tax_declaration_refs:
+    type: object
+    properties:
+      links:
+        type: array
+        items:
+          $ref: '#/definitions/link'
+      details:
+        type: array
+        items:
+          $ref: '#/definitions/tax_declaration'
+    description: Tax Declarations
+  tax_declaration:
+    type: object
+    properties:
+      uid:
+        type: string
+      tax_declaration_type:
+        $ref: '#/definitions/tax_declaration_type'
+      exempted:
+        type: boolean
+      exemption_reason:
+        type: string
+      reduced_rate_applicable:
+        type: boolean
+      reduced_rate_information:
+        $ref: '#/definitions/withholding_tax_reduced_rate_information'
+    description: Withholding Tax Detail
+  withholding_tax_reduced_rate_information:
+    type: object
+    properties:
+      article_number:
+        type: string
+      reduced_rate:
+        type: number
+      registered_companies:
+        type: array
+        items:
+          $ref: '#/definitions/withholding_tax_detail_registered_company'
+  withholding_tax_detail_registered_company:
+    type: object
+    properties:
+      registered_company_name:
+        type: string
+      reason_dta:
+        type: string
+##############################################
+  product:
+    description: Todo - Model
+    type: "object"
+    properties:
+      uid: 
+        type: string
+      name:
+        type: string
+      code:
+        type: string
+  agreement_platform_fees:
+    description: Todo 
+    type: "object"
+    properties:
+      enterprise_fees:
+        type: "boolean"
+  agreement_intermediary_fee:
+    description: Todo 
+    type: "object"
+    properties:
+      value:
+        $ref: "#/definitions/money"
+      fee_type:
+        $ref: "#/definitions/agreement_intermediary_fee_type"
+  agreement_intermediary_fees:
+    description: Todo 
+    type: "object"
+    properties:
+      fees:
+        type: "array"
+        items:
+          $ref: "#/definitions/agreement_intermediary_fee"
+  agreement_fee:
+    description: Todo 
+    type: "object"
+    properties:
+      value:
+        $ref: "#/definitions/money"
+      fee_type:
+        $ref: "#/definitions/agreement_fee_type"
+  agreement_fees:
+    description: Todo 
+    type: "object"
+    properties:
+      fees:
+        type: "array"
+        items:
+          $ref: "#/definitions/agreement_fee"
+  agreement_tax_fee:
+    description: Todo 
+    type: "object"
+    properties:
+      value:
+        $ref: "#/definitions/money"
+      fee_type:
+        $ref: "#/definitions/agreement_tax_fee_type"
+  agreement_tax_fees:
+    description: Todo 
+    type: "object"
+    properties:
+      fees:
+        type: "array"
+        items:
+          $ref: "#/definitions/agreement_tax_fee"
+      tax_rate:
+        $ref: "#/definitions/percentage"
+  fee_detail:
+    description: Todo 
+    type: "object"
+    properties:
+      agreement_platform_fees:
+        $ref: "#/definitions/agreement_platform_fees"
+      agreement_intermediary_fees:
+        $ref: "#/definitions/agreement_intermediary_fees"
+      agreement_fees:
+        $ref: "#/definitions/agreement_fees"
+      agreement_tax_fees:
+        $ref: "#/definitions/agreement_tax_fees"
+    description: "Fees and accounting values linked to an agreement"
+  agreement_limit:
+    description: Todo - Model
+    type: "object"
+    properties:
+      value:
+        $ref: "#/definitions/money"
+      limit_type:
+        $ref: "#/definitions/agreement_limit_type"
+  agreement_limits:
+    description: Todo - Model
+    type: "object"
+    properties:
+      limits:
+        type: "array"
+        items:
+          $ref: "#/definitions/agreement_limit"
+  available_agreement_value:
+    description: Todo 
+    type: "object"
+    properties:
+      value:
+        $ref: "#/definitions/money"
+      available_value_type:
+        $ref: "#/definitions/available_agreement_value_type"
+  available_agreement_values:
+    description: Todo 
+    type: "object"
+    properties:
+      available_values:
+        type: "array"
+        items:
+          $ref: "#/definitions/available_agreement_value"
+  actual_agreement_value:
+    description: Todo 
+    type: "object"
+    properties:
+      value:
+        $ref: "#/definitions/money"
+      actual_value_type:
+        $ref: "#/definitions/actual_agreement_value_type"
+  actual_agreement_values:
+    description: Todo 
+    type: "object"
+    properties:
+      actual_values:
+        type: "array"
+        items:
+          $ref: "#/definitions/actual_agreement_value"
+  agreement_values_detail:
+    description: Todo 
+    type: "object"
+    properties:
+      agreement_limits:
+        $ref: "#/definitions/agreement_limits"
+      available_agreement_values:
+        $ref: "#/definitions/available_agreement_values"
+      actual_agreement_values:
+        $ref: "#/definitions/available_agreement_values"
+    description: "Agreement Values"
+  reporting_preferences_detail:
+    description: Todo - Model
+    type: "object"
+    properties:
+      uid:
+        type: string
+      statement_currency_code:
+        type: string
+    description: "Reporting preferences"
+  reg28_composition:
+    description: Todo 
+    type: "object"
+    properties:
+      equity_perc:
+        $ref: "#/definitions/percentage"
+      property_perc:
+        $ref: "#/definitions/percentage"
+      international_perc:
+        $ref: "#/definitions/percentage"
+      reg28_compliant:
+        type: "boolean"
+    description: "Reg28 composition"
+  investment_instrument_summary:
+    description: Todo 
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+      description:
+        type: "string"
+      code:
+        type: "string"
+      isin_code:
+        type: "string"
+      fund_fact_sheet_url:
+        type: "string"
+      category:
+        type: "string"
+      link:
+        $ref: "#/definitions/link"
+    description: "Investment instrument summary"
+  investment_instrument:
+    description: Todo 
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+      description:
+        type: "string"
+      code:
+        type: "string"
+      isin_code:
+        type: "string"
+      fund_fact_sheet_url:
+        type: "string"
+      category:
+        type: "string"
+      fund_manager:
+        type: "string"
+      fund_type:
+        type: "string"
+      capped:
+        type: "boolean"
+      reg28:
+        $ref: "#/definitions/investment_instrument_reg28"
+      fund_currency_code:
+        type: "string"
+      unit_price:
+        $ref: "#/definitions/money"
+      guarantee_fund:
+        type: "boolean"
+      sell_dealing_frequency:
+        $ref: "#/definitions/sell_dealing_frequency_type"
+      proportionate_sell:
+        type: "boolean"
+      proportionate_offshore_sell:
+        type: "boolean"
+      guarantee_fund_with_term:
+        type: "boolean"
+      is_transitional_component:
+        type: "boolean"
+      single_investment_allowed:
+        type: "boolean"
+    description: "Investment components"
+  agreement_investment:
+    description: Todo 
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      value:
+        $ref: "#/definitions/money"
+      split:
+        $ref: "#/definitions/percentage"
+      instrument:
+        $ref: "#/definitions/investment_instrument_summary"
+      money_source:
+        $ref: "#/definitions/investment_account_type"
+    description: "Agreement Investment component"
+  agreement_request:
+    description: Todo 
+    type: "object"
+    properties:
+      code:
+        type: "string"
+      description:
+        type: "string"
+      available:
+        type: "boolean"
+      reason:
+        type: "string"
+      link:
+        $ref: "#/definitions/link"
+    description: "Agreement Instruction"
+  reg28_compliance_detail:
+    description: Todo - Model
+    type: "object"
+    properties:
+      uid:
+        type: string
+      applicable:
+        type: "boolean"
+      contract_compliance_status:
+        type: "string"
+      exempt_status:
+        type: "boolean"
+      non_compliance_start_date:
+        type: "string"
+        format: "date"
+    description: "Reg28 compliance detail"
+  agreement_rules_detail:
+    description: Todo - Model
+    type: "object"
+    properties:
+      uid:
+        type: string
+      reg28:
+        $ref: "#/definitions/reg28_compliance_detail"
+  schedule:
+    description: Todo 
+    type: "object"
+    properties:
+      start_date:
+        type: "string"
+        format: "date"
+      end_date:
+        type: "string"
+        format: "date"
+      next_execution_date:
+        type: "string"
+        format: "date"
+      execution_day_of_month:
+        type: "number"
+      frequency:
+        $ref: "#/definitions/schedule_frequency"
+    description: "Schedule"
+  money_collection:
+    description: Todo 
+    type: "object"
+    properties:
+      contribution_payer:
+        $ref: "#/definitions/contribution_payer"
+      split:
+        $ref: "#/definitions/percentage"
+    description: "Money collection"
+  buy_instrument_instruction:
+    description: Todo 
+    type: "object"
+    properties:
+      investment_instrument:
+        $ref: "#/definitions/investment_instrument_summary"
+      split:
+        $ref: "#/definitions/percentage"
+    description: "Component buy instruction"
+  debit_order:
+    description: Todo 
+    type: "object"
+    properties:
+      amount:
+        $ref: "#/definitions/money"
+      schedule:
+        $ref: "#/definitions/schedule"
+      collections:
+        type: "array"
+        items:
+          $ref: "#/definitions/money_collection"
+      buy_instrument_instructions:
+        type: "array"
+        items:
+          $ref: "#/definitions/buy_instrument_instruction"
+    description: "Debit order"
+  automatic_increase:
+    description: Todo 
+    type: "object"
+    properties:
+      automatic_increase_activated:
+        type: "boolean"
+      automatic_increase_percentage:
+        $ref: "#/definitions/percentage"
+      automatic_increase_month:
+        $ref: "#/definitions/months"
+    description: "Automatic Increase"
+  regular_investment_request:
+    description: Todo 
+    type: "object"
+    properties:
+      debit_order:
+        $ref: "#/definitions/debit_order"
+      automatic_increase:
+        $ref: "#/definitions/automatic_increase"
+    description: "Regular investment request"
+  payment:
+    description: Todo 
+    type: "object"
+    properties:
+      payee:
+        $ref: "#/definitions/payee"
+      split:
+        $ref: "#/definitions/percentage"
+    description: "Payment"
+  sell_component_request:
+    description: Todo 
+    type: "object"
+    properties:
+      investment_instrument:
+        $ref: "#/definitions/investment_instrument_summary"
+      split:
+        $ref: "#/definitions/percentage"
+      value:
+        $ref: "#/definitions/money"
+    description: "Componet sell request"
+  income_request:
+    description: Todo 
+    type: "object"
+    properties:
+      amount:
+        $ref: "#/definitions/money"
+      schedule:
+        $ref: "#/definitions/schedule"
+      payments:
+        type: "array"
+        items:
+          $ref: "#/definitions/payment"
+      sell_component_requests:
+        type: "array"
+        items:
+          $ref: "#/definitions/sell_component_request"
+    description: "Income Instruction"
+  agreement_active_request_detail:
+    description: Todo 
+    type: "object"
+    properties:
+      regular_investments:
+        type: "array"
+        items:
+          $ref: "#/definitions/regular_investment_request"
+      regular_incomes:
+        type: "array"
+        items:
+          $ref: "#/definitions/income_request"
+      income_review:
+        type: "boolean"
+      fee_top_up:
+        type: "boolean"
+    description: "Active Agreement Instruction"
+  agreement_classification:
+    description: Todo 
+    type: "object"
+    properties:
+      hierarchy:
+        $ref: "#/definitions/agreement_hierarchy"
+      business_secton:
+        type: "string"
+      segment:
+        type: "string"
+      channel:
+        $ref: "#/definitions/money"
+      structure_type:
+        $ref: "#/definitions/agreement_hierarchy"
+      fee_top_up:
+        $ref: "#/definitions/link"    
+  agreement_summary:
+    description: Todo 
+    type: "object"
+    properties:
+      party_summary:
+        $ref: "#/definitions/party"
+      agreement_number:
+        type: "string"
+      product_name:
+        type: "string"
+      total_investment_value:
+        $ref: "#/definitions/money"
+      structure_type:
+        $ref: "#/definitions/agreement_hierarchy"
+      link:
+        $ref: "#/definitions/link"
+  agreement:
+    description: Todo - In Model
+    type: "object"
+    properties:
+      number:
+        type: "string"
+      description:
+        type: "string"
+      inception_date:
+        type: "string"
+        format: "date"
+      acceptance_date:
+        type: "string"
+        format: "date"
+      maturity_date:
+        type: "string"
+        format: "date"
+      structure_type:
+        $ref: "#/definitions/agreement_hierarchy"
+      acceptance_method:
+        $ref: "#/definitions/agreement_acceptance_method_type"
+      contribution_status:
+        $ref: "#/definitions/agreement_contribution_status_type"
+      business_sector:
+        $ref: "#/definitions/business_sector_type"
+      segment:
+        $ref: "#/definitions/segment_type"
+      channel:
+        $ref: "#/definitions/channel_type"
+      type:
+        $ref: "#/definitions/agreement_type"
+      status:
+        $ref: "#/definitions/agreement_status_type"
+      agreements:
+        $ref: "#/definitions/agreement_agreements"
+      product:
+        $ref: "#/definitions/product"
+      values:
+        $ref: "#/definitions/agreement_values"
+      preferences:
+        $ref: "#/definitions/agreement_preferences"
+      investments:
+        $ref: "#/definitions/agreement_investments"
+      available_requests:
+        $ref: "#/definitions/agreement_available_requests"
+      active_requests:
+        $ref: "#/definitions/agreement_active_requests"
+      rules:
+        $ref: "#/definitions/agreement_rules"
+      role_players:
+        $ref: "#/definitions/agreement_role_players"
+  tax_detail:
+    description: Todo 
+    type: "object"
+    properties:
+      tax_number:
+        type: "string"
+      tax_office:
+        type: "string"
+      tax_status:
+        $ref: "#/definitions/tax_status_type"
+    description: "Tax Detail"
+  intermediary:
+    description: Broker/Advisory - Todo - Model 
+    type: "object"
+    properties:
+      broker_service_indicator:
+        type: "string"
+        description: >-
+          Inditcator (Broker License Active) - Yes/No
+      broker_house_indicator:
+        type: "string"
+        description: >-
+          Indicator (Broker House Licence Active) - Yes/No
+      servicing_franchise_name:
+        type: "string"
+        description: >-
+          Optional, if available then provide Franchise broker house name
+      broker_code:
+        type: "string"
+        description: >-
+          Must associate with broker house code (5/6 digits)
+      broker_name:
+        type: "string"
+        description: >-
+          Name of broker
+      broker_house_code:
+        type: "string"
+        description: >-
+          Client preferred Broker House code. 6 digits
+      broker_house_name:
+        type: "string"
+        description: >-
+          Name of broker house
+      broker_email_address:
+        type: "string"
+      broker_telephone:
+        type: "string"
+      classification:
+        type: "string"
+      preferred_broker:
+        type: "boolean"
+  intermediary_relationship:
+    description: Todo - Model
+    type: "object"
+    properties:
+      intermediary:
+        $ref: "#/definitions/intermediary"
+      consultant_name:
+        type: "string"
+      split:
+        $ref: "#/definitions/percentage"
+  intermediary_fsb_license:
+    description: Intermediary FSB Licence detail
+    type: "object"
+    properties:
+      category:
+        description: "can be in the range of  [1..4]"
+        type: "integer"  
+      sub_category:
+        description: "can be in the range of  [1..20]"
+        type: "integer"
+      description:
+        description: "descriptive text for [category].[subcategory] combination"
+        type: "string"
+  status:
+    description: Todo
+    type: "object"
+    properties:
+      status:
+        $ref: "#/definitions/product"
+  product_type:
+    description: Todo 
+    type: "object"
+    properties:
+      product_type:
+        $ref: "#/definitions/type_definition"
+  payment_collection_type:
+    description: Todo 
+    type: "object"
+    properties:
+      payment_collection_type:
+        $ref: "#/definitions/type_definition"
+  frequency:
+    description: Todo 
+    type: "object"
+    properties:
+      frequency:
+        $ref: "#/definitions/type_definition"
+  anniversaryMonth:
+    type: "object"
+    properties:
+      anniversaryMonth:
+        $ref: "#/definitions/type_definition"
+  agreement_search_list:
+    description: Todo 
+    type: "object"
+    properties:
+      party:
+        $ref: "#/definitions/party"
+      agreement_link:
+        type: "array"
+        items:
+          $ref: "#/definitions/link"
+  investment_instrument_reg28:
+    description: Todo 
+    properties:
+      composition:
+        $ref: "#/definitions/reg28_composition"
+      link:
+        $ref: "#/definitions/link"
+  agreement_agreements:
+    description: Todo 
+    properties:
+      components:
+        type: "array"
+        items:
+          $ref: "#/definitions/agreement_summary"
+      link:
+        $ref: "#/definitions/link"
+  agreement_values:
+    description: Todo 
+    properties:
+      agreement_values:
+        $ref: "#/definitions/agreement_values_detail"
+      link:
+        $ref: "#/definitions/link"
+  agreement_preferences:
+    description: Todo - Model
+    properties:
+      agreement_preferences:
+        $ref: '#/definitions/reporting_preferences_detail'
+      link:
+        $ref: '#/definitions/link'
+  agreement_investments:
+    description: Todo 
+    properties:
+      link:
+        $ref: "#/definitions/link"
+      agreement_investments:
+        type: "array"
+        items:
+          $ref: "#/definitions/agreement_investment"
+  agreement_available_requests:
+    description: Todo 
+    properties:
+      link:
+        $ref: "#/definitions/link"
+      requests:
+        type: "array"
+        items:
+          $ref: "#/definitions/agreement_request"
+  agreement_active_requests:
+    description: Todo 
+    properties:
+      link:
+        $ref: "#/definitions/link"
+      agreement_active_requests:
+        $ref: "#/definitions/agreement_active_request_detail"
+  agreement_rules:
+    description: Todo 
+    properties:
+      link:
+        $ref: "#/definitions/link"
+      agreement_rules:
+        $ref: "#/definitions/agreement_rules_detail"
+  agreement_role_players:
+    description: Todo - Model
+    properties:
+      agreement_role_players:
+        $ref: "#/definitions/role_players"
+      link:
+        $ref: "#/definitions/link"
+  role_players:
+    description: Todo - Mpdel
+    type: "object"
+    properties:
+      owners:
+        type: array
+        items:
+          $ref: "#/definitions/owner"
+      beneficiaries:
+        type: array
+        items:
+          $ref: "#/definitions/beneficiary"
+      cessionaries:
+        type: array
+        items:
+          $ref: "#/definitions/cessionary"
+      contribution_payer:
+        type: array
+        items:
+          $ref: "#/definitions/contribution_payer"
+      payees:
+        type: array
+        items:
+          $ref: "#/definitions/payee"
+      lifeassured:
+        type: array
+        items:
+          $ref: "#/definitions/life_assured"
+      intermediaries:
+        $ref: "#/definitions/role_players_intermediaries"
+  role_players_intermediaries:
+    description: Todo - Model
+    properties:
+      link:
+        $ref: "#/definitions/link"
+      intermediaries:
+        type: "array"
+        items:
+          $ref: "#/definitions/intermediary_relationship"
+  endowment_tax_rates:        
+    description: Todo
+    properties:
+      income_tax_rate:
+        $ref: "#/definitions/percentage" 
+      effective_cgt_rate:
+        $ref: "#/definitions/percentage"
+      cgt_inclusion_rate:
+        $ref: "#/definitions/percentage"
+  cgt_endowment:
+    properties:
+      second_hand:
+        type: boolean
+      tax_profile:
+        $ref: "#/definitions/endowment_tax_portfolio"
+      tax_rates:
+        $ref: "#/definitions/endowment_tax_rates"
+      accumulated_loss:
+        $ref: "#/definitions/money"
+  cgt_calc_request:
+    properties:
+      func_tax_fx:
+        $ref: "#/definitions/foreign_exchange"
+  cgt_lisp_za_estimates_calc_request:
+    allOf: 
+    - $ref: '#/definitions/cgt_calc_request'
+    - type: object
+      properties:      
+        estimated_values:
+          $ref: "#/definitions/cgt_estimated_values"
+  cgt_events_calc_request:
+    allOf: 
+    - $ref: '#/definitions/cgt_calc_request'
+    - type: object
+      properties:      
+        gain_events:
+          type: "array"
+          items:
+            $ref: "#/definitions/cgt_event"
+  cgt_endowment_events_calc_request:
+    allOf: 
+    - $ref: '#/definitions/cgt_events_calc_request'
+    - type: object
+      properties:      
+        product:
+          $ref: "#/definitions/cgt_endowment"
+  cgt_endowment_za_events_calc_request:
+    allOf: 
+    - $ref: '#/definitions/cgt_endowment_events_calc_request'
+  cgt_endowment_gg_branch_events_calc_request:
+    allOf: 
+    - $ref: '#/definitions/cgt_endowment_events_calc_request'
+  cgt_lisp_za_natural_events_calc_request:
+    allOf: 
+    - $ref: '#/definitions/cgt_events_calc_request'
+  cgt_lisp_za_trust_events_calc_request:
+    allOf: 
+    - $ref: '#/definitions/cgt_events_calc_request'
+  cgt_lisp_za_company_events_calc_request:
+    allOf: 
+    - $ref: '#/definitions/cgt_events_calc_request'
+  cgt_lisp_gg_natural_events_calc_request:
+    allOf: 
+    - $ref: '#/definitions/cgt_events_calc_request'
+  cgt_lisp_gg_trust_events_calc_request:
+    allOf: 
+    - $ref: '#/definitions/cgt_events_calc_request'
+  cgt_event:
+    properties:
+      fund_ref:
+        type: string
+      weighted_unit_cost:
+        $ref: "#/definitions/money"
+      unit_price:
+        $ref: "#/definitions/money"
+      units_to_sell:
+        type: number
+      fund_tax_fx:
+        $ref: "#/definitions/foreign_exchange"
+      fund_func_fx:
+        $ref: "#/definitions/foreign_exchange"
+      cgt_event:
+        type: boolean
+  cgt_estimated_values:     
+    example: {
+      "expected_cgt": {"value": 12000.0, "curre1ncy": "ZAR"},
+      "annual_cgt_exclusion": {"value": 40000.0, "curre1ncy": "ZAR"},
+      "other_cgt_for_tax_year": {"value": 30000.0, "curre1ncy": "ZAR"},
+      "expected_income_tax_rate": {"value": 0.35}
+    }
+    description: Todo
+    properties:
+      expected_cgt:
+        $ref: "#/definitions/money"
+      annual_cgt_exclusion:
+        $ref: "#/definitions/money"
+      other_cgt_for_tax_year:
+        $ref: "#/definitions/money"
+      expected_income_tax_rate:
+        $ref: "#/definitions/percentage"
+  cgt_events_calc_result:
+    properties:
+      income_tax_rate:
+        $ref: "#/definitions/percentage"
+      default_income_tax_rate:
+        $ref: "#/definitions/percentage"
+      cgt_included_in_income_tax:
+        type: "boolean"
+      cgt_event_values_tax:
+        type: "array"
+        items:
+          $ref: "#/definitions/cgt_calc_event_values"
+      cgt_event_values_func:
+        type: "array"
+        items:
+          $ref: "#/definitions/cgt_calc_event_values"
+  cgt_lisp_events_calc_result:
+    example: {
+        "income_tax_rate": {"value": 0.34},
+        "default_income_tax_rate": {"value": 0.31},
+        "cgt_included_in_income_tax":true,
+        "cgt_event_values_tax": [
+          {
+            "fund_ref": "1779419649",
+            "weighted_unit_cost": {"value": 50.0, "currency": "ZAR"},
+            "unit_price": {"value": 70.0, "curre1ncy": "ZAR"},
+            "proceeds": {"value": 1232130.0, "curre1ncy": "ZAR"},
+            "base_cost": {"value": 40.0, "curre1ncy": "ZAR"},
+            "cgt_value": {"value": 321311.0, "curre1ncy": "ZAR"},
+            "cgt_event": true
+          },
+          {
+            "fund_ref": "21321312",
+            "weighted_unit_cost": {"value": 50.0, "currency": "ZAR"},
+            "unit_price": {"value": 70.0, "curre1ncy": "ZAR"},
+            "proceeds": {"value": 1232130.0, "curre1ncy": "ZAR"},
+            "base_cost": {"value": 40.0, "curre1ncy": "ZAR"},
+            "cgt_value": {"value": 321311.0, "curre1ncy": "ZAR"},
+            "cgt_event": true
+          }
+        ],
+        "cgt_event_values_func":[
+          {
+            "fund_ref": "21321312",
+            "weighted_unit_cost": {"value": 50.0, "currency": "ZAR"},
+            "unit_price": {"value": 70.0, "curre1ncy": "ZAR"},
+            "proceeds": {"value": 1232130.0, "curre1ncy": "ZAR"},
+            "base_cost": {"value": 40.0, "curre1ncy": "ZAR"},
+            "cgt_value": {"value": 321311.0, "curre1ncy": "ZAR"},
+            "cgt_event": true
+          },
+          {
+            "fund_ref": "21321312",
+            "weighted_unit_cost": {"value": 50.0, "currency": "ZAR"},
+            "unit_price": {"value": 70.0, "curre1ncy": "ZAR"},
+            "proceeds": {"value": 1232130.0, "curre1ncy": "ZAR"},
+            "base_cost": {"value": 40.0, "curre1ncy": "ZAR"},
+            "cgt_value": {"value": 321311.0, "curre1ncy": "ZAR"},
+            "cgt_event": true
+          }
+        ],
+        "cgt_values_tax": {
+          "net_expected": {"value": 10000.0, "curre1ncy": "ZAR"},
+          "annual_exclusion": {"value": 40000.0, "curre1ncy": "ZAR"},
+        },
+        "cgt_values_func": {
+          "net_expected": {"value": 10000.0, "curre1ncy": "ZAR"},
+          "annual_exclusion": {"value": 40000.0, "curre1ncy": "ZAR"},
+        }
+      }
+    allOf: 
+    - $ref: '#/definitions/cgt_events_calc_result'
+    - type: object
+      properties:
+        cgt_values_tax:
+          $ref: "#/definitions/cgt_calc_product_values"
+        cgt_values_func:
+          $ref: "#/definitions/cgt_calc_product_values"
+  cgt_endowment_events_calc_result:
+    example: {
+        "default_income_tax_rate": {"value": 0.31},
+        "income_tax_rate": {"value": 0.34},
+        "cgt_included_in_income_tax":true,
+        "cgt_event_values_tax": [
+          {
+            "fund_ref": "1779419649",
+            "weighted_unit_cost": {"value": 50.0, "currency": "ZAR"},
+            "unit_price": {"value": 70.0, "curre1ncy": "ZAR"},
+            "proceeds": {"value": 1232130.0, "curre1ncy": "ZAR"},
+            "base_cost": {"value": 40.0, "curre1ncy": "ZAR"},
+            "cgt_value": {"value": 321311.0, "curre1ncy": "ZAR"},
+            "cgt_event": true
+          },
+          {
+            "fund_ref": "21321312",
+            "weighted_unit_cost": {"value": 50.0, "currency": "ZAR"},
+            "unit_price": {"value": 70.0, "curre1ncy": "ZAR"},
+            "proceeds": {"value": 1232130.0, "curre1ncy": "ZAR"},
+            "base_cost": {"value": 40.0, "curre1ncy": "ZAR"},
+            "cgt_value": {"value": 321311.0, "curre1ncy": "ZAR"},
+            "cgt_event": true
+          }
+        ],
+        "cgt_event_values_func":[
+          {
+            "fund_ref": "21321312",
+            "weighted_unit_cost": {"value": 50.0, "currency": "ZAR"},
+            "unit_price": {"value": 70.0, "curre1ncy": "ZAR"},
+            "proceeds": {"value": 1232130.0, "curre1ncy": "ZAR"},
+            "base_cost": {"value": 40.0, "curre1ncy": "ZAR"},
+            "cgt_value": {"value": 321311.0, "curre1ncy": "ZAR"},
+            "cgt_event": true
+          },
+          {
+            "fund_ref": "21321312",
+            "weighted_unit_cost": {"value": 50.0, "currency": "ZAR"},
+            "unit_price": {"value": 70.0, "curre1ncy": "ZAR"},
+            "proceeds": {"value": 1232130.0, "curre1ncy": "ZAR"},
+            "base_cost": {"value": 40.0, "curre1ncy": "ZAR"},
+            "cgt_value": {"value": 321311.0, "curre1ncy": "ZAR"},
+            "cgt_event": true
+          }
+        ],
+        "effective_cgt_rate": {"value": 0.25},
+        "cgt_inclusion_rate":  {"value": 0.23},
+        "disclaimer": "Disclamer text",
+        "cgt_values_tax": {
+          "net_expected": {"value": 10000.0, "curre1ncy": "ZAR"},
+          "annual_exclusion": {"value": 40000.0, "curre1ncy": "ZAR"},
+          "total": {"value": 13000.0, "curre1ncy": "ZAR"},
+          "expected": {"value": 20000.0, "curre1ncy": "ZAR"},
+          "amount_taxed": {"value": 18000.0, "curre1ncy": "ZAR"},
+        },
+        "cgt_values_func": {
+          "net_expected": {"value": 10000.0, "curre1ncy": "ZAR"},
+          "annual_exclusion": {"value": 40000.0, "curre1ncy": "ZAR"},
+          "total": {"value": 13000.0, "curre1ncy": "ZAR"},
+          "expected": {"value": 20000.0, "curre1ncy": "ZAR"},
+          "amount_taxed": {"value": 18000.0, "curre1ncy": "ZAR"},
+        }
+      }
+    allOf: 
+    - $ref: '#/definitions/cgt_events_calc_result'
+    - type: object
+      properties:
+        effective_cgt_rate:
+          $ref: "#/definitions/percentage"
+        cgt_inclusion_rate:
+          $ref: "#/definitions/percentage"
+        disclaimer:
+          type: string
+        cgt_values_tax:
+          $ref: "#/definitions/cgt_calc_endowment_values"
+        cgt_values_func:
+          $ref: "#/definitions/cgt_calc_endowment_values"
+  cgt_calc_event_values:
+    properties:
+      fund_ref:
+        type: string
+      weighted_unit_cost:
+        $ref: "#/definitions/money"
+      unit_price:
+        $ref: "#/definitions/money"
+      proceeds:
+        $ref: "#/definitions/money"
+      base_cost:
+        $ref: "#/definitions/money"
+      cgt_value:
+        $ref: "#/definitions/money"
+      cgt_event: 
+        type: boolean
+  cgt_calc_product_values:        
+    description: Todo
+    properties:
+      net_expected:
+        $ref: "#/definitions/money"
+      annual_exclusion:
+        $ref: "#/definitions/money"
+  cgt_calc_endowment_values:
+    allOf: 
+    - $ref: '#/definitions/cgt_calc_product_values'
+    - type: object
+      properties:
+        total:
+          $ref: "#/definitions/money"
+        expected:
+          $ref: "#/definitions/money"
+        amount_taxed:
+          $ref: "#/definitions/money"
+  cgt_estimates_result:
+    example: {
+        "annual_exclusion": {"value": 40000.0, "curre1ncy": "ZAR"},
+        "estimated_exclusion_available": {"value": 12000.0, "curre1ncy": "ZAR"},
+        "estimated_exclusion_used": {"value": 12000.0, "curre1ncy": "ZAR"},
+        "estimated_cgt": {"value": 12000.0, "curre1ncy": "ZAR"},
+        "estimated_amount_taxed": {"value": 10000.0, "curre1ncy": "ZAR"},
+        "lisp_cgt_inclusion_rate": {"value": 0.4}
+    }
+    properties:
+      annual_exclusion:
+        $ref: "#/definitions/money"
+      estimated_exclusion_available:
+        $ref: "#/definitions/money"
+      estimated_exclusion_used:
+        $ref: "#/definitions/money"
+      estimated_cgt:
+        $ref: "#/definitions/money"
+      estimated_amount_taxed:
+        $ref: "#/definitions/money"
+      lisp_cgt_inclusion_rate:
+        $ref: "#/definitions/percentage"
+# responses:
+  # GeneralError:
+  #   description: General Error
+  #   schema:
+  #     $ref: '#/definitions/ErrorModel'
+responses:
+  unauthorised_access:
+    description: Unauthorised Access
+    schema:
+      $ref: '#/definitions/error'
+  invalid_parameters:
+    description: Invalid parameters
+    schema:
+      $ref: '#/definitions/error'
+  unexpected_error:
+    description: Unexpected error
+    schema:
+      $ref: '#/definitions/error'
+  object_not_found:
+    description: Object does not exist
+    schema:
+      $ref: '#/definitions/error'
+# parameters:
+  # skipParam:
+  #   name: "skip"
+  #   in: "query"
+  #   description: "number of items to skip"
+  #   type: "integer"
+  
+parameters:
+  bearer_token_param:
+    name: "authorization"
+    in: "header"
+    description: "Authorization jwt containing broker and broker house code"
+    required: true
+    type: "string"
+  result_limit_param:
+    name: result_limit
+    in: query
+    description: "Define maximum number of records that will be returned.\n\n```limitParam=number``` OR ```limitParam=OVERRIDE_LIMIT``` \n\n Number is the maximum number of records that will be returned. If no maximium is specified the limit is defaulted to 1000. \n\n If OVERRIDE_LIMIT is specified no limit will be applied and all the data records will be returned.  Use with caution!\n\n Header field **X-Total-Count** contains the total number of records. **limitParam=100** Limits result set to 100 records **Header: X-Total-Count=210** Indicates that 100 of 210 records were returned"
+    required: false
+    type: integer
+    default: 100
+    maximum: 200
+  embed_param:
+    name: embed
+    in: query
+    description: "Resolve URI's into objects for all fields included in the embed list. If an object contains a <name>_ref object, only the link field will be returned. To return the detail field, include detail in the embed list.  \n\n ```embed=field1,field3,....``` OR ```embed=party.detail ``` \n\n  Resolves the detail field in the party object and returns the detail object instead of a link to the detail object \n\nThe **embed** parameter supports dotted notation, e.g. **party.contact_details.email** will resolve the email object of the contact_details object. All objects in the hierarchy will be resolved i.e if **contact_details** was a link both contact_details and email would have been resolved."
+    required: false
+    type: string
+  sort_param:
+    name: sort
+    in: query
+    description: "Define result set sort order. \n\n ```sort=+/-sort field,+/-sort field,..... ``` \n\n&#43; indicates ascending (a to z) and - descending (z to a) sort order. Sort criteria will be applied on sort fields from left to right. A maximum of three sorting fields will be allowed. \n\n ```sort=+name,-id ``` \n\n ```(aaabb, 10), (aaabb, 8),
+      (ccccc, 1) ```"
+    required: false
+    type: string
+  fields_param:
+    name: fields
+    in: query
+    description: "Define fields that should be returned as part of the result set.\n\n ```fields=field1,field3,....``` OR ```fields=name,id```\n\n Result set will be limited to the name and id fields."
+    required: false
+    type: string
+  filter_param:
+    name: filter
+    in: query
+    description: "Search/filter criteria that will be applied to query. \n\n ```filter=criteria,field:=criteria,.... ``` \n\n Criteria can end with wildcard character &#42;. ```Aaaa&#42;``` will match all data values that starts with 4 A's - matches are case insensitive. The minimum number of leading characters will be 3. Only data records that meets all filter criteria will be returned.\n\n ```filter=name:=David,id:=500220* ```\n\n Return all records where name equals David and id starts with 500220"
+    required: false
+    type: string
+  party_id_param:
+    name: party_id
+    in: path
+    description: "Unique identifier for party."
+    required: true
+    type: string
+  bank_account_id_param:
+    name: bank_account_id
+    in: path
+    description: "Unique identifier for bank account."
+    required: true
+    type: string
+  contact_id_param:
+    name: contact_id
+    in: path
+    description: "Unique identifier for contact mechanism e.g. email, address, telephone, etc."
+    required: true
+    type: string
+  role_id_param:
+    name: role_id
+    in: path
+    description: "Unique identifier for a role."
+    required: true
+    type: string
+  tax_residency_id_param:
+    name: tax_residency_id
+    in: path
+    description: "Unique identifier for party tax residency."
+    required: true
+    type: string
+  tax_declaration_id_param:
+    name: tax_declaration_id
+    in: path
+    description: "Unique identifier for a party tax declaration."
+    required: true
+    type: string
+  party_identity_id_parm:
+    name: party_identity_id
+    in: path
+    description: "Unique identifier for a party identity."
+    required: true
+    type: string
+  agreement_no_parm:
+    name: agreement_no
+    in: path
+    description: "Unique identifier an agreement."
+    required: true
+    type: string
+  broker_house_code_parm:
+    name: broker_house_code
+    in: path
+    description: "Unique identifier for broker house."
+    required: true
+    type: "string"
+  broker_code_parm:
+    name: broker_code
+    in: path
+    description: "Code uniquely identifies a broker within a broker house."
+    required: true
+    type: "string"
+  cgt_endowment_za_events_calc_request_parm:
+    name: cgt_endowment_za_events_calc_request
+    in: body
+    description: "Calculate cgt values for a set of cgt evants for a za endowment."
+    required: true
+    schema:
+      example: 
+        {
+          "func_tax_fx": {"from": "ZAR", "to": "ZAR", "exchange_rate": 1},
+          "product": {
+            "second_hand": true,
+            "tax_profile": "ctp",
+            "tax_rates": {
+              "income_tax_rate" : {"value": 0.156},
+              "effective_cgt_rate" : {"value": 0.406},
+              "cgt_inclusion_rate" : {"value": 0.23}
+            },
+            "accumulated_loss": {"value": 20.0, "currency": "ZAR"}
+          },
+          "gain_events": [
+            {
+              "fund_ref": "1779419649",
+              "weighted_unit_cost": {"value": 10.0, "currency": "USD"},
+              "unit_price": {"value": 20.0, "curre1ncy": "USD"},
+              "units_to_sell": 20,
+              "fund_tax_fx": {"from": "USD", "to": "ZAR", "exchange_rate": 15.3},
+              "fund_func_fx": {"from": "USD", "to": "ZAR", "exchange_rate": 15.3},
+              "cgt_event": true
+            },
+            {
+              "fund_ref": "21321312",
+              "weighted_unit_cost": {"value": 10.0, "currency": "ZAR"},
+              "unit_price": {"value": 20.0, "curre1ncy": "ZAR"},
+              "units_to_sell": 20,
+              "fund_tax_fx": {"from": "ZAR", "to": "ZAR", "exchange_rate": 1},
+              "fund_func_fx": {"from": "ZAR", "to": "ZAR", "exchange_rate": 1},
+              "cgt_event": true
+            }
+          ]
+        }
+      $ref: "#/definitions/cgt_endowment_za_events_calc_request"
+  cgt_endowment_gg_branch_events_calc_request_parm:
+    name: cgt_endowment_gg_branch_events_calc_request
+    in: body
+    description: "Calculate cgt values for a set of cgt evants for a gg branch endowment."
+    required: true
+    schema:
+      $ref: "#/definitions/cgt_endowment_gg_branch_events_calc_request"
+  cgt_lisp_za_estimates_calc_request_parm:
+    name: cgt_lisp_za_estimates_calc_request
+    in: body
+    description: "Calculate estimated cgt values for za lisp."
+    required: true
+    schema:
+      $ref: "#/definitions/cgt_lisp_za_estimates_calc_request"
+  cgt_lisp_za_natural_events_calc_request_parm:
+    name: cgt_lisp_za_natural_events_calc_request
+    in: body
+    description: "Calculate cgt values for a set of cgt evants for a natural person with a za lisp product."
+    required: true
+    schema:
+      example: 
+        {
+          "func_tax_fx": {"from": "ZAR", "to": "ZAR", "exchange_rate": 1},
+          "gain_events": [
+            {
+              "fund_ref": "1779419649",
+              "weighted_unit_cost": {"value": 10.0, "currency": "USD"},
+              "unit_price": {"value": 20.0, "curre1ncy": "USD"},
+              "units_to_sell": 20,
+              "fund_tax_fx": {"from": "USD", "to": "ZAR", "exchange_rate": 15.3},
+              "fund_func_fx": {"from": "USD", "to": "ZAR", "exchange_rate": 15.3},
+              "cgt_event": true
+            },
+            {
+              "fund_ref": "21321312",
+              "weighted_unit_cost": {"value": 10.0, "currency": "ZAR"},
+              "unit_price": {"value": 20.0, "curre1ncy": "ZAR"},
+              "units_to_sell": 20,
+              "fund_tax_fx": {"from": "ZAR", "to": "ZAR", "exchange_rate": 1},
+              "fund_func_fx": {"from": "ZAR", "to": "ZAR", "exchange_rate": 1},
+              "cgt_event": true
+            }
+          ]
+        }
+      $ref: "#/definitions/cgt_lisp_za_natural_events_calc_request"
+  cgt_lisp_za_trust_events_calc_request_parm:
+    name: cgt_lisp_za_trust_events_calc_request
+    in: body
+    description: "Calculate cgt values for a set of cgt evants for a trust with a za lisp product."
+    required: true
+    schema:
+      $ref: "#/definitions/cgt_lisp_za_trust_events_calc_request"    
+  cgt_lisp_za_company_events_calc_request_parm:
+    name: cgt_lisp_za_company_events_calc_request
+    in: body
+    description: "Calculate cgt values for a set of cgt evants for a company with a za lisp product."
+    required: true
+    schema:
+      $ref: "#/definitions/cgt_lisp_za_company_events_calc_request"
+  cgt_lisp_gg_natural_events_calc_request_parm:
+    name: cgt_lisp_gg_natural_events_calc_request
+    in: body
+    description: "Calculate cgt values for a set of cgt evants for a natural person with a gg lisp product."
+    required: true
+    schema:
+      $ref: "#/definitions/cgt_lisp_gg_natural_events_calc_request"
+  cgt_lisp_gg_trust_events_calc_request_parm:
+    name: cgt_lisp_gg_trust_events_calc_request
+    in: body
+    description: "Calculate cgt values for a set of cgt evants for a trust with a za lisp product."
+    required: true
+    schema:
+      $ref: "#/definitions/cgt_lisp_gg_trust_events_calc_request"
+      
+      
+      
+  
+# pathitems:
+  # EntityOperations:
+  #   get:
+  #     description: "Returns a pet based on ID"
+  #     summary: "Find pet by ID"
+  #     responses:
+  #       default:
+  #         $ref: '#/responses/GeneralError'
