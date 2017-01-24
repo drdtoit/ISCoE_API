@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "Capital Gains Tax Calculator"
-  version: "V1.1"
+  version: "V1.0"
   title: "CGT calculator"
   termsOfService: "todo"
   contact:
@@ -294,31 +294,6 @@ paths:
             $ref: "#/definitions/error"
       x-swagger-router-controller: "CGT"
 definitions:
-  endowment_tax_portfolio:
-    type: "string"
-    enum:
-    - "ctp"
-    - "itp"
-    - "utp"
-    - "rtp"
-  percentage:
-    type: "object"
-    properties:
-      value:
-        type: "number"
-        format: "float"
-  error:
-    type: "object"
-    properties:
-      code:
-        type: "string"
-        description: "Error code"
-      message:
-        type: "string"
-        description: "Error description"
-      details:
-        type: "string"
-        description: "Additional details about the error"
   money:
     type: "object"
     properties:
@@ -327,148 +302,6 @@ definitions:
         format: "float"
       currency:
         type: "string"
-  foreign_exchange:
-    type: "object"
-    properties:
-      from:
-        type: "string"
-        description: "From currency"
-      to:
-        type: "string"
-        description: "From currency"
-      exchange_rate:
-        type: "number"
-        format: "float"
-        description: "ratio to convert from currency to,to currency"
-  endowment_tax_rates:
-    properties:
-      income_tax_rate:
-        $ref: "#/definitions/percentage"
-      effective_cgt_rate:
-        $ref: "#/definitions/percentage"
-      cgt_inclusion_rate:
-        $ref: "#/definitions/percentage"
-    description: "Todo"
-  cgt_endowment:
-    properties:
-      second_hand:
-        type: "boolean"
-      tax_profile:
-        $ref: "#/definitions/endowment_tax_portfolio"
-      tax_rates:
-        $ref: "#/definitions/endowment_tax_rates"
-      accumulated_loss:
-        $ref: "#/definitions/money"
-  cgt_calc_request:
-    properties:
-      func_tax_fx:
-        $ref: "#/definitions/foreign_exchange"
-  cgt_lisp_za_estimates_calc_request:
-    allOf:
-    - $ref: "#/definitions/cgt_calc_request"
-    - type: "object"
-      properties:
-        estimated_values:
-          $ref: "#/definitions/cgt_estimated_values"
-  cgt_events_calc_request:
-    allOf:
-    - $ref: "#/definitions/cgt_calc_request"
-    - type: "object"
-      properties:
-        gain_events:
-          type: "array"
-          items:
-            $ref: "#/definitions/cgt_event"
-  cgt_endowment_events_calc_request:
-    allOf:
-    - $ref: "#/definitions/cgt_events_calc_request"
-    - type: "object"
-      properties:
-        product:
-          $ref: "#/definitions/cgt_endowment"
-  cgt_endowment_za_events_calc_request:
-    allOf:
-    - $ref: "#/definitions/cgt_endowment_events_calc_request"
-    - {}
-  cgt_endowment_gg_branch_events_calc_request:
-    allOf:
-    - $ref: "#/definitions/cgt_endowment_events_calc_request"
-    - {}
-  cgt_lisp_za_natural_events_calc_request:
-    allOf:
-    - $ref: "#/definitions/cgt_events_calc_request"
-    - {}
-  cgt_lisp_za_trust_events_calc_request:
-    allOf:
-    - $ref: "#/definitions/cgt_events_calc_request"
-    - {}
-  cgt_lisp_za_company_events_calc_request:
-    allOf:
-    - $ref: "#/definitions/cgt_events_calc_request"
-    - {}
-  cgt_lisp_gg_natural_events_calc_request:
-    allOf:
-    - $ref: "#/definitions/cgt_events_calc_request"
-    - {}
-  cgt_lisp_gg_trust_events_calc_request:
-    allOf:
-    - $ref: "#/definitions/cgt_events_calc_request"
-    - {}
-  cgt_event:
-    properties:
-      fund_ref:
-        type: "string"
-      weighted_unit_cost:
-        $ref: "#/definitions/money"
-      unit_price:
-        $ref: "#/definitions/money"
-      units_to_sell:
-        type: "number"
-      fund_tax_fx:
-        $ref: "#/definitions/foreign_exchange"
-      fund_func_fx:
-        $ref: "#/definitions/foreign_exchange"
-      cgt_event:
-        type: "boolean"
-  cgt_estimated_values:
-    properties:
-      expected_cgt:
-        $ref: "#/definitions/money"
-      annual_cgt_exclusion:
-        $ref: "#/definitions/money"
-      other_cgt_for_tax_year:
-        $ref: "#/definitions/money"
-      expected_income_tax_rate:
-        $ref: "#/definitions/percentage"
-    description: "Todo"
-    example:
-      expected_cgt:
-        value: 12000
-        curre1ncy: "ZAR"
-      annual_cgt_exclusion:
-        value: 40000
-        curre1ncy: "ZAR"
-      other_cgt_for_tax_year:
-        value: 30000
-        curre1ncy: "ZAR"
-      expected_income_tax_rate:
-        value: 0.34999999999999997779553950749686919152736663818359375
-  cgt_events_calc_result:
-    properties:
-      income_tax_rate:
-        $ref: "#/definitions/percentage"
-      default_income_tax_rate:
-        $ref: "#/definitions/percentage"
-      cgt_included_in_income_tax:
-        type: "boolean"
-      cgt_event_values_tax:
-        type: "array"
-        items:
-          $ref: "#/definitions/cgt_calc_event_values"
-      cgt_event_values_func:
-        type: "array"
-        items:
-          $ref: "#/definitions/cgt_calc_event_values"
   cgt_lisp_events_calc_result:
     allOf:
     - $ref: "#/definitions/cgt_events_calc_result"
@@ -478,258 +311,12 @@ definitions:
           $ref: "#/definitions/cgt_calc_product_values"
         cgt_values_func:
           $ref: "#/definitions/cgt_calc_product_values"
-    example:
-      default_income_tax_rate:
-        value: 0.309999999999999997779553950749686919152736663818359375
-      income_tax_rate:
-        value: 0.340000000000000024424906541753443889319896697998046875
-      cgt_included_in_income_tax: true
-      cgt_event_values_tax:
-      - fund_ref: "1779419649"
-        weighted_unit_cost:
-          value: 50
-          currency: "ZAR"
-        unit_price:
-          value: 70
-          curre1ncy: "ZAR"
-        proceeds:
-          value: 1232130
-          curre1ncy: "ZAR"
-        base_cost:
-          value: 40
-          curre1ncy: "ZAR"
-        cgt_value:
-          value: 321311
-          curre1ncy: "ZAR"
-        cgt_event: true
-      - fund_ref: "21321312"
-        weighted_unit_cost:
-          value: 50
-          currency: "ZAR"
-        unit_price:
-          value: 70
-          curre1ncy: "ZAR"
-        proceeds:
-          value: 1232130
-          curre1ncy: "ZAR"
-        base_cost:
-          value: 40
-          curre1ncy: "ZAR"
-        cgt_value:
-          value: 321311
-          curre1ncy: "ZAR"
-        cgt_event: true
-      cgt_event_values_func:
-      - fund_ref: "21321312"
-        weighted_unit_cost:
-          value: 50
-          currency: "ZAR"
-        unit_price:
-          value: 70
-          curre1ncy: "ZAR"
-        proceeds:
-          value: 1232130
-          curre1ncy: "ZAR"
-        base_cost:
-          value: 40
-          curre1ncy: "ZAR"
-        cgt_value:
-          value: 321311
-          curre1ncy: "ZAR"
-        cgt_event: true
-      - fund_ref: "21321312"
-        weighted_unit_cost:
-          value: 50
-          currency: "ZAR"
-        unit_price:
-          value: 70
-          curre1ncy: "ZAR"
-        proceeds:
-          value: 1232130
-          curre1ncy: "ZAR"
-        base_cost:
-          value: 40
-          curre1ncy: "ZAR"
-        cgt_value:
-          value: 321311
-          curre1ncy: "ZAR"
-        cgt_event: true
-      cgt_values_tax:
-        net_expected:
-          value: 10000
-          curre1ncy: "ZAR"
-        annual_exclusion:
-          value: 40000
-          curre1ncy: "ZAR"
-      cgt_values_func:
-        net_expected:
-          value: 10000
-          curre1ncy: "ZAR"
-        annual_exclusion:
-          value: 40000
-          curre1ncy: "ZAR"
-  cgt_endowment_events_calc_result:
-    allOf:
-    - $ref: "#/definitions/cgt_events_calc_result"
-    - type: "object"
-      properties:
-        effective_cgt_rate:
-          $ref: "#/definitions/percentage"
-        cgt_inclusion_rate:
-          $ref: "#/definitions/percentage"
-        disclaimer:
-          type: "string"
-        cgt_values_tax:
-          $ref: "#/definitions/cgt_calc_endowment_values"
-        cgt_values_func:
-          $ref: "#/definitions/cgt_calc_endowment_values"
-    example:
-      default_income_tax_rate:
-        value: 0.309999999999999997779553950749686919152736663818359375
-      income_tax_rate:
-        value: 0.340000000000000024424906541753443889319896697998046875
-      cgt_included_in_income_tax: true
-      cgt_event_values_tax:
-      - fund_ref: "1779419649"
-        weighted_unit_cost:
-          value: 50
-          currency: "ZAR"
-        unit_price:
-          value: 70
-          curre1ncy: "ZAR"
-        proceeds:
-          value: 1232130
-          curre1ncy: "ZAR"
-        base_cost:
-          value: 40
-          curre1ncy: "ZAR"
-        cgt_value:
-          value: 321311
-          curre1ncy: "ZAR"
-        cgt_event: true
-      - fund_ref: "21321312"
-        weighted_unit_cost:
-          value: 50
-          currency: "ZAR"
-        unit_price:
-          value: 70
-          curre1ncy: "ZAR"
-        proceeds:
-          value: 1232130
-          curre1ncy: "ZAR"
-        base_cost:
-          value: 40
-          curre1ncy: "ZAR"
-        cgt_value:
-          value: 321311
-          curre1ncy: "ZAR"
-        cgt_event: true
-      cgt_event_values_func:
-      - fund_ref: "21321312"
-        weighted_unit_cost:
-          value: 50
-          currency: "ZAR"
-        unit_price:
-          value: 70
-          curre1ncy: "ZAR"
-        proceeds:
-          value: 1232130
-          curre1ncy: "ZAR"
-        base_cost:
-          value: 40
-          curre1ncy: "ZAR"
-        cgt_value:
-          value: 321311
-          curre1ncy: "ZAR"
-        cgt_event: true
-      - fund_ref: "21321312"
-        weighted_unit_cost:
-          value: 50
-          currency: "ZAR"
-        unit_price:
-          value: 70
-          curre1ncy: "ZAR"
-        proceeds:
-          value: 1232130
-          curre1ncy: "ZAR"
-        base_cost:
-          value: 40
-          curre1ncy: "ZAR"
-        cgt_value:
-          value: 321311
-          curre1ncy: "ZAR"
-        cgt_event: true
-      effective_cgt_rate:
-        value: 0.25
-      cgt_inclusion_rate:
-        value: 0.2300000000000000099920072216264088638126850128173828125
-      disclaimer: "Disclamer text"
-      cgt_values_tax:
-        net_expected:
-          value: 10000
-          curre1ncy: "ZAR"
-        annual_exclusion:
-          value: 40000
-          curre1ncy: "ZAR"
-        total:
-          value: 13000
-          curre1ncy: "ZAR"
-        expected:
-          value: 20000
-          curre1ncy: "ZAR"
-        amount_taxed:
-          value: 18000
-          curre1ncy: "ZAR"
-      cgt_values_func:
-        net_expected:
-          value: 10000
-          curre1ncy: "ZAR"
-        annual_exclusion:
-          value: 40000
-          curre1ncy: "ZAR"
-        total:
-          value: 13000
-          curre1ncy: "ZAR"
-        expected:
-          value: 20000
-          curre1ncy: "ZAR"
-        amount_taxed:
-          value: 18000
-          curre1ncy: "ZAR"
-  cgt_calc_event_values:
+  percentage:
+    type: "object"
     properties:
-      fund_ref:
-        type: "string"
-      weighted_unit_cost:
-        $ref: "#/definitions/money"
-      unit_price:
-        $ref: "#/definitions/money"
-      proceeds:
-        $ref: "#/definitions/money"
-      base_cost:
-        $ref: "#/definitions/money"
-      cgt_value:
-        $ref: "#/definitions/money"
-      cgt_event:
-        type: "boolean"
-  cgt_calc_product_values:
-    properties:
-      net_expected:
-        $ref: "#/definitions/money"
-      annual_exclusion:
-        $ref: "#/definitions/money"
-    description: "Todo"
-  cgt_calc_endowment_values:
-    allOf:
-    - $ref: "#/definitions/cgt_calc_product_values"
-    - type: "object"
-      properties:
-        total:
-          $ref: "#/definitions/money"
-        expected:
-          $ref: "#/definitions/money"
-        amount_taxed:
-          $ref: "#/definitions/money"
+      value:
+        type: "number"
+        format: "float"
   cgt_estimates_result:
     properties:
       annual_exclusion:
@@ -746,81 +333,34 @@ definitions:
         $ref: "#/definitions/percentage"
     example:
       annual_exclusion:
-        value: 40000
+        value: 40000.0
         curre1ncy: "ZAR"
       estimated_exclusion_available:
-        value: 12000
+        value: 12000.0
         curre1ncy: "ZAR"
       estimated_exclusion_used:
-        value: 12000
+        value: 12000.0
         curre1ncy: "ZAR"
       estimated_cgt:
-        value: 12000
+        value: 12000.0
         curre1ncy: "ZAR"
       estimated_amount_taxed:
-        value: 10000
+        value: 10000.0
         curre1ncy: "ZAR"
       lisp_cgt_inclusion_rate:
-        value: 0.40000000000000002220446049250313080847263336181640625
-parameters:
-  cgt_endowment_za_events_calc_request_parm:
-    in: "body"
-    name: "cgt_endowment_za_events_calc_request"
-    description: "Calculate cgt values for a set of cgt evants for a za endowment."
-    required: true
-    schema:
-      $ref: "#/definitions/cgt_endowment_za_events_calc_request"
-  cgt_endowment_gg_branch_events_calc_request_parm:
-    in: "body"
-    name: "cgt_endowment_gg_branch_events_calc_request"
-    description: "Calculate cgt values for a set of cgt evants for a gg branch endowment."
-    required: true
-    schema:
-      $ref: "#/definitions/cgt_endowment_gg_branch_events_calc_request"
-  cgt_lisp_za_estimates_calc_request_parm:
-    in: "body"
-    name: "cgt_lisp_za_estimates_calc_request"
-    description: "Calculate estimated cgt values for za lisp."
-    required: true
-    schema:
-      $ref: "#/definitions/cgt_lisp_za_estimates_calc_request"
-  cgt_lisp_za_natural_events_calc_request_parm:
-    in: "body"
-    name: "cgt_lisp_za_natural_events_calc_request"
-    description: "Calculate cgt values for a set of cgt evants for a natural person\
-      \ with a za lisp product."
-    required: true
-    schema:
-      $ref: "#/definitions/cgt_lisp_za_natural_events_calc_request"
-  cgt_lisp_za_trust_events_calc_request_parm:
-    in: "body"
-    name: "cgt_lisp_za_trust_events_calc_request"
-    description: "Calculate cgt values for a set of cgt evants for a trust with a\
-      \ za lisp product."
-    required: true
-    schema:
-      $ref: "#/definitions/cgt_lisp_za_trust_events_calc_request"
-  cgt_lisp_za_company_events_calc_request_parm:
-    in: "body"
-    name: "cgt_lisp_za_company_events_calc_request"
-    description: "Calculate cgt values for a set of cgt evants for a company with\
-      \ a za lisp product."
-    required: true
-    schema:
-      $ref: "#/definitions/cgt_lisp_za_company_events_calc_request"
-  cgt_lisp_gg_natural_events_calc_request_parm:
-    in: "body"
-    name: "cgt_lisp_gg_natural_events_calc_request"
-    description: "Calculate cgt values for a set of cgt evants for a natural person\
-      \ with a gg lisp product."
-    required: true
-    schema:
-      $ref: "#/definitions/cgt_lisp_gg_natural_events_calc_request"
-  cgt_lisp_gg_trust_events_calc_request_parm:
-    in: "body"
-    name: "cgt_lisp_gg_trust_events_calc_request"
-    description: "Calculate cgt values for a set of cgt evants for a trust with a\
-      \ za lisp product."
-    required: true
-    schema:
-      $ref: "#/definitions/cgt_lisp_gg_trust_events_calc_request"
+        value: 0.4
+  cgt_endowment_events_calc_result:
+    allOf:
+    - $ref: "#/definitions/cgt_events_calc_result"
+    - type: "object"
+      properties:
+        effective_cgt_rate:
+          $ref: "#/definitions/percentage"
+        cgt_inclusion_rate:
+          $ref: "#/definitions/percentage"
+        disclaimer:
+          type: "string"
+        cgt_values_tax:
+          $ref: "#/definitions/cgt_calc_endowment_values"
+        cgt_values_func:
+          $ref: "#/definitions/cgt_calc_endowment_values"
